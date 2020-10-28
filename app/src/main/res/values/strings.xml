@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Smart Stockist</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="welcome">Welcome</string>
+    <string name="enter_your_email_to_begin_your_journey">Enter your Email to begin your journey</string>
+    <string name="email">Email</string>
+    <string name="next">Next</string>
+</resources>
