@@ -8,5 +8,5 @@ data class User(
     @SerializedName("CompanyName")
     val CompanyName:String,
     @SerializedName("ExpiresOn")
-    val ExpiresOn:String
+    val ExpiresOn:String? = null
 )

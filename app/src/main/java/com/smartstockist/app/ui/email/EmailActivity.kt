@@ -1,5 +1,6 @@
 package com.smartstockist.app.ui.email
 
+import android.content.Intent
 import android.net.Network
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.smartstockist.app.data.model.User
 import com.smartstockist.app.data.remote.NetworkState
 import com.smartstockist.app.databinding.ActivityEmailBinding
+import com.smartstockist.app.ui.login.LoginActivity
 import com.smartstockist.app.utils.CONNECTION_ERROR
 
 class EmailActivity : AppCompatActivity() {
@@ -25,6 +27,7 @@ class EmailActivity : AppCompatActivity() {
          bindingComponent.btnNext.setOnClickListener {
                  if (bindingComponent.etEmail.text.toString().trim().isEmpty() || !isEmailValid(bindingComponent.etEmail.text.toString().trim())){
                      Toast.makeText(this,"Plz enter Valid Email",Toast.LENGTH_SHORT).show()
+                     startActivity(Intent(this,LoginActivity::class.java))
                  }else{
                      emailViewModel.getCompany(bindingComponent.etEmail.text.toString().trim())
                  }

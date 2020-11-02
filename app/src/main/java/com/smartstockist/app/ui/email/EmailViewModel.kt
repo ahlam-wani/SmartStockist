@@ -25,7 +25,7 @@ class EmailViewModel:ViewModel() {
                     println(response.data)
                     _emailState.value=NetworkState.Error(response.errors?.firstOrNull()!!)
                 }
-               _emailState.value=NetworkState.Success(response.data,response.message)
+             //  _emailState.value=NetworkState.Success(response.data,response.message)
             }catch (ex:Exception){
                         println("exxxception $ex")
                 //_emailState.value= error(ex)

@@ -1,7 +1,6 @@
 package com.smartstockist.app.data.remote
+
 import androidx.databinding.library.baseAdapters.BuildConfig
-import com.smartstockist.app.utils.APP_ID
-import com.smartstockist.app.utils.APP_KEY
 import com.smartstockist.app.utils.BASE_URL
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
@@ -10,17 +9,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class ApiClient {
+class LoginApiClient {
     companion object {
         val retrofit: Retrofit by lazy {
             Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BASE_URL).client(getOkHttpBuilder().build())
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(getOkHttpBuilder().build())
                 .build()
         }
-
-        private fun getOkHttpBuilder(timeout: Int = 120): OkHttpClient.Builder {
+        private fun getOkHttpBuilder(timeout: Int = 600000): OkHttpClient.Builder {
 
             val builder = OkHttpClient.Builder()
             val dispatcher = Dispatcher()
@@ -32,20 +29,17 @@ class ApiClient {
             builder.addInterceptor { chain ->
                 val original = chain.request()
                 val request = original.newBuilder()
-                    .addHeader("APPID", APP_ID)
-                    .addHeader("APPKEY", APP_KEY)
+                    .header("Content-Type", "application/json; charset=utf-8")
+                    .method(original.method, original.body)
                     .build()
                 chain.proceed(request)
             }
-
                 val interceptor = HttpLoggingInterceptor()
                 interceptor.level = HttpLoggingInterceptor.Level.BODY
                 builder.addInterceptor(interceptor)
 
-
             return builder
         }
     }
-}
 
-
+    }

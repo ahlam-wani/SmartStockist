@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawer_items">
+        <item>Clients</item>
+        <item>Orders</item>
+        <item>New Order</item>
+        <item>Log Out</item>
+    </string-array>
+    <string-array name="drawer_item_icons">
+        <item>@drawable/ic_baseline_supervisor_account_24</item>
+        <item>@drawable/ic_order</item>
+        <item>@drawable/ic_order</item>
+        <item>@drawable/ic_icons_logout</item>
+    </string-array>
+</resources>
