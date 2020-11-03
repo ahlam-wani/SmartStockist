@@ -31,7 +31,7 @@ class Api {
                 builder.addInterceptor { chain ->
                     val original = chain.request()
                     val request = original.newBuilder()
-                        .addHeader("AUTHORIZATION", "Bearer ")
+                        .addHeader("Authorization", "Bearer  $token")
                         .build()
                     chain.proceed(request)
                 }

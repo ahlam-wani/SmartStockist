@@ -15,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"
@@ -29,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_16"
         android:layout_marginTop="16dp"
-        android:text="Clients"
+        android:text="@string/clients"
         android:textAppearance="@style/AppTextAppearance.Headline4"
         android:textColor="@color/textColor"
         android:textStyle="bold"

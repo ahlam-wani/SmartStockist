@@ -2,7 +2,7 @@ package com.smartstockist.app.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GetClient(@SerializedName("id")
+data class GetClients(@SerializedName("id")
                         val id:String,
                      @SerializedName ("balance")
                         val balance:Float,
@@ -67,7 +67,7 @@ data class GetClient(@SerializedName("id")
                      @SerializedName("state")
                      val state: Int,
                      @SerializedName("createdById")
-                     val createdId:Int?=null,
+                     val createdId:String?=null,
                      @SerializedName("lastUpdatedById")
                      val lastUpdatedId: String,
                      @SerializedName("createdOn")
