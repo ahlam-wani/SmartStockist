@@ -2,7 +2,6 @@ package com.smartstockist.app.utils
 
 import android.content.Context
 import android.media.session.MediaSession
-
 class SessionManager(private val context:Context) {
     fun setSession(session:Session):Boolean{
         val(token)=session

@@ -1,5 +1,6 @@
 package com.smartstockist.app.ui.dashboard
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.core.view.GravityCompat
 import com.smartstockist.app.R
 import com.smartstockist.app.data.model.Item
 import com.smartstockist.app.databinding.ActivityDashboardBinding
+import com.smartstockist.app.ui.client.ClientActivity
 import com.smartstockist.app.ui.dashboard.adapter.DrawerAdapter
 import com.smartstockist.app.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_dashboard.view.*
@@ -54,6 +56,7 @@ class DashboardActivity : AppCompatActivity() {
         override fun onItemClick(p0: AdapterView<*>?, p1: View?, index: Int, p3: Long) {
             when(index){
                 0->{
+                     startActivity(Intent(this@DashboardActivity, ClientActivity::class.java))
                     Toast.makeText(this@DashboardActivity,"Clients",Toast.LENGTH_SHORT).show()
 
                 }
