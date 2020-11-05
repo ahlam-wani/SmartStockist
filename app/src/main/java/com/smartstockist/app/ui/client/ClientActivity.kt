@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smartstockist.app.data.model.GetClients
 import com.smartstockist.app.data.remote.NetworkState
@@ -30,40 +32,50 @@ class ClientActivity : AppCompatActivity() {
         binding.toolbar.ivBack.setOnClickListener {
             super.onBackPressed()
         }
-         viewModel.getClients()
-        viewModel.clientState.observe(this, ::onFetchClients)
-
-    }
-
-    fun onFetchClients(state: NetworkState<List<GetClients>>) {
-        if (state is NetworkState.Loading) {
-            binding.progressBar.visibility = View.VISIBLE
-            return
-        }
-        binding.progressBar.visibility = View.GONE
-        when (state) {
-            is NetworkState.Success -> {
-                setAdapter(state.data, state.message)
-            }
-            is NetworkState.Error -> {
-                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
-            }
-            is NetworkState.Failure ->
-                Toast.makeText(this, CONNECTION_ERROR, Toast.LENGTH_SHORT).show()
-        }
-
-
-    }
-    private fun setAdapter(data: List<GetClients>?, msg: String?) {
-        if (data.isNullOrEmpty()) {
-            binding.apply {
-                Toast.makeText(this@ClientActivity, "$msg", Toast.LENGTH_SHORT).show()
-            }
-            return
-
-        }
+        val adapter=ClientAdapter()
         binding.rvNotificatons.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding.rvNotificatons.adapter = ClientAdapter(data)
+         //viewModel.getClients()
+         viewModel.clientPagerList.observe(this, Observer {
+
+            // binding.rvNotificatons.adapter = ClientAdapter()
+             adapter.submitList(it)
+         })
+        binding.rvNotificatons.adapter=adapter
+
     }
+
+ // private  fun onFetchClients(state: PagedList<GetClients>) {
+    //    if (state is NetworkState.Loading) {
+     //       binding.progressBar.visibility = View.VISIBLE
+     //       return
+     //   }
+      //  binding.progressBar.visibility = View.GONE
+       // when (state) {
+       //     is NetworkState.Success -> {
+         //       setAdapter(state.data, state.message)
+         //   }
+          //  is NetworkState.Error -> {
+          //      Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+          //  }
+         //   is NetworkState.Failure ->
+        //        Toast.makeText(this, CONNECTION_ERROR, Toast.LENGTH_SHORT).show()
+       // }
+
+
+   // }
+   // private fun setAdapter(data: PagedList<List<GetClients>>?, msg: String?) {
+     //   if (data.isNullOrEmpty()) {
+     //       binding.apply {
+      //          Toast.makeText(this@ClientActivity, "$msg", Toast.LENGTH_SHORT).show()
+       //     }
+       //     return
+
+        //}
+        //binding.rvNotificatons.layoutManager =
+        //    LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+       // binding.rvNotificatons.adapter = ClientAdapter(data)
+    //}
 }
+
+

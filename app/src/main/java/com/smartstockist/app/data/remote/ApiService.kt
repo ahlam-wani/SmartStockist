@@ -13,5 +13,5 @@ interface  ApiService {
     suspend fun token(@Body user:LoginModelClass):ApiResponse<LoginModelClass>
 
     @GET("clients/query")
-    fun Clients():Call<List<GetClients>>
+    fun Clients(@Query("page")  pageId:String):Call<List<GetClients>>
 }
